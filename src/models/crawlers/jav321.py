@@ -67,8 +67,9 @@ def getScore(response):
         score = re.findall(r'<b>平均評価</b>: <img data-original="/img/(\d+).gif" />', response)[0]
         return str(float(score) / 5.0)
     else:
-        score = re.findall(r'<b>平均評価</b>: ([^<]+)<br>', response)).strip(" [',']").replace(''', '')
-        return str(float(text_score) * 2)
+        score = re.findall(r'<b>平均評価</b>: ([^<]+)<br>', response)[0].strip()
+        return str(float(score) * 2)
+
 
 def getYear(release):
     try:
