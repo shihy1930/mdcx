@@ -65,10 +65,10 @@ def getNum(response, number):
 def getScore(response):
     if re.search(r'<b>平均評価</b>: <img data-original="/img/(\d+).gif" />', response):
         score = re.findall(r'<b>平均評価</b>: <img data-original="/img/(\d+).gif" />', response)[0]
-        return str(float(score) / 10.0)
+        return str(float(score) / 5.0)
     else:
-        return str(re.findall(r'<b>平均評価</b>: ([^<]+)<br>', response)).strip(" [',']").replace('\'', '')
-
+        score = re.findall(r'<b>平均評価</b>: ([^<]+)<br>', response)).strip(" [',']").replace(''', '')
+        return str(float(text_score) * 2)
 
 def getYear(release):
     try:
