@@ -135,8 +135,21 @@ def get_ountline(html):
 
 def get_score(html):
     result = html.xpath("//p[contains(@class,'d-review__average')]/strong/text()")
-    return result[0].replace('\\n', '').replace('\n', '').replace('点', '') if result else ''
-
+    #return result[0].replace('\\n', '').replace('\n', '').replace('点', '') if result else ''
+    if result:
+        score_text = result[0].replace('\\n', '').replace('\n', '').replace('点', '')
+        try:
+            # 将评分转换为浮点数
+            score = float(score_text)
+            # 将5分制评分转换为10分制评分
+            score = score * 2
+            # 将结果转换回字符串
+            score = str(score)
+        except ValueError:
+            score = ''
+    else:
+        score = ''
+    return score 
 
 def get_trailer(htmlcode, real_url):
     trailer_url = ''
