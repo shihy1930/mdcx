@@ -135,8 +135,10 @@ def get_score(html):
     result = str(html.xpath("//span[@class='score-stars']/../text()")).strip(" ['']")
     try:
         score = re.findall(r'(\d{1}\..+)分', result)
-        if score:
-            score = score[0]
+        if score:   
+            score = float(score[0])
+            score = score * 2
+            score = str(score)
         else:
             score = ''
     except:
